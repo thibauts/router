@@ -81,7 +81,7 @@
     };
 
     Router.prototype.navigate = function(url) {
-      if(typeof window !== 'undefined') return;
+      if(typeof window === 'undefined') return;
       window.history.pushState(null, null, url);
       this.dispatch(url);
     };
