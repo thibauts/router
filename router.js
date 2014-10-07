@@ -25,12 +25,10 @@
       var listenedEvent = 'pushState';
       var dispatchedUrl = window.location.pathname;
 
-      if(options){
-        if(options.useHash){
+      if(options && options.useHash){
           this.useHash = options.useHash;
           listenedEvent = 'hashchange';
           dispatchedUrl = window.location.hash.substring(1);
-        }
       } 
    
       if(typeof window !== 'undefined') {
