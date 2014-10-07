@@ -77,3 +77,12 @@ On the browser side (you will need [eventemitter](https://github.com/thibauts/ev
 </body>
 </html>
 ```
+
+By default, router uses pushState, but for compatibility issues you can listen to the hashchange event : 
+
+``` javascript
+
+    var router = new Router({useHash: true});
+
+```
+
