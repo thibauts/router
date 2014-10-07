@@ -19,13 +19,23 @@
     var PARAM_PATTERN = /:([a-zA-Z0-9_]+)/g;
     var PARAM_CAPTURE = '(.*?)';
 
-    function Router() {
+    function Router(options) {
       EventEmitter.call(this);
 
+      var listenedEvent = 'pushState';
+      var dispatchedUrl = window.location.pathname;
+
+      if(options){
+        if(options.useHash){
+          listenedEvent = 'hashchange';
+          dispatchedUrl = window.location.hash.substring(1);
+        }
+      } 
+   
       if(typeof window !== 'undefined') {
         var self = this;
-        window.addEventListener('popstate', function() {
-          self.dispatch(window.location.pathname+window.location.hash);
+        window.addEventListener(listenedEvent, function() {
+          self.dispatch(dispatchedUrl);
         }, false);
       }
     }
