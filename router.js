@@ -25,7 +25,7 @@
       if(typeof window !== 'undefined') {
         var self = this;
         window.addEventListener('popstate', function() {
-          self.dispatch(window.location.pathname);
+          self.dispatch(window.location.pathname+window.location.hash);
         }, false);
       }
     }
