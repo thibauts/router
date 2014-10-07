@@ -22,7 +22,7 @@
     function Router(options) {
       EventEmitter.call(this);
 
-      var listenedEvent = 'pushState';
+      var listenedEvent = 'popstate';
       var dispatchedUrl = window.location.pathname;
 
       if(options && options.useHash){
@@ -93,11 +93,12 @@
       if(typeof window === 'undefined') return;
       if(!this.useHash) {
         window.history.pushState(null, null, url);
+        this.dispatch(url);
       } else {
         url = url.substring(1);        
         window.location.hash = url;
       }
-      this.dispatch(url);  
+        
     };
 
     // Node
