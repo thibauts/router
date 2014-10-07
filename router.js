@@ -27,6 +27,7 @@
 
       if(options){
         if(options.useHash){
+          this.useHash = options.useHash;
           listenedEvent = 'hashchange';
           dispatchedUrl = window.location.hash.substring(1);
         }
@@ -92,8 +93,13 @@
 
     Router.prototype.navigate = function(url) {
       if(typeof window === 'undefined') return;
-      window.history.pushState(null, null, url);
-      this.dispatch(url);
+      if(!this.useHash) {
+        window.history.pushState(null, null, url);
+      } else {
+        url = url.substring(1);        
+        window.location.hash = url;
+      }
+      this.dispatch(url);  
     };
 
     // Node
