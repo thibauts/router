@@ -80,34 +80,9 @@ On the browser side (you will need [eventemitter](https://github.com/thibauts/ev
 
 By default, router uses pushState, but for compatibility issues you can listen to the hashchange event : 
 
-``` html
-<!doctype html>
-<html>
-<head>
-  <script src="eventemitter.js"></script>
-  <script src="router.js"></script>
-  <script>
+``` javascript
+
     var router = new Router({useHash: true});
 
-    router.define({
-      'index': '/',
-      'hello': '/hello/:name'
-    });
-
-    router.on('route', function(name, params) {
-      console.log('route', name, params);
-    });
-
-    router.on('notfound', function(url) {
-      console.log('not found', url);
-    });
-
-    router.navigate('/foobar');
-    router.navigate('/hello/world');
-  </script>
-</head>
-<body>
-</body>
-</html>
 ```
 
