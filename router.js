@@ -28,12 +28,14 @@
       if(options && options.useHash){
           this.useHash = options.useHash;
           listenedEvent = 'hashchange';
-          dispatchedUrl = window.location.hash.substring(1);
       } 
    
       if(typeof window !== 'undefined') {
         var self = this;
         window.addEventListener(listenedEvent, function() {
+          if(options && options.useHash){
+            dispatchedUrl = window.location.hash.substring(1);
+          } 
           self.dispatch(dispatchedUrl);
         }, false);
       }
