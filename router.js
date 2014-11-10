@@ -23,7 +23,6 @@
       EventEmitter.call(this);
 
       var listenedEvent = 'popstate';
-      var dispatchedUrl = window.location.pathname;
 
       if(options && options.useHash){
           this.useHash = options.useHash;
@@ -31,6 +30,7 @@
       } 
    
       if(typeof window !== 'undefined') {
+        var dispatchedUrl = window.location.pathname;
         var self = this;
         window.addEventListener(listenedEvent, function() {
           if(options && options.useHash){
